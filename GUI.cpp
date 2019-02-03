@@ -13,19 +13,6 @@ GUI::~GUI(){
     window.close();
 }
 
-void GUI::initImages()
-{
-	for (int i = 0; i < 8; ++i)
-	{
-		// std::string fileName = "img/num" + i + 1 + ".png";
-		std::string fileName = i + 1 + ".png";
-		numbers[i].loadFromFile(fileName.c_str());
-	}
-	// sf::Image img;
-	// img.loadFromFile("img/bomb.png");
-	// images.push_back(img);
-}
-
 void GUI::drawCell(Cell const & cell, int x, int y)
 {
 	sf::Texture texture;
@@ -72,12 +59,10 @@ void GUI::execute(Logic & logic)
             {
                 if (event.mouseButton.button == sf::Mouse::Right)
                 {
-                    // if (map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsMarked())
-                    //     map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsMarked(false);
-                    if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
-                    {
+                    if (map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsMarked())
+                        map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsMarked(false);
+                    else if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
                        map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsMarked(true);
-                    }
                 }
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
