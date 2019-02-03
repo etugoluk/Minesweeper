@@ -75,15 +75,22 @@ void GUI::execute(Logic & logic)
                     // if (map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsMarked())
                     //     map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsMarked(false);
                     if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
-			            map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsMarked(true);
+                    {
+                       map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsMarked(true);
+                    }
                 }
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
-				    logic.getMap()[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsVisible(true);
                     if (isFirstClick)
                     {
+                        map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsVisible(true);
                         logic.generateMap();
                         isFirstClick = false;
+                        map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsVisible(false);
+                    }
+                    if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
+                    {
+                        logic.setVisibleCells(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize);
                     }
                 }
             }
@@ -91,5 +98,8 @@ void GUI::execute(Logic & logic)
         window.clear();
         drawMap(logic.getMap(), logic.getSize());
         window.display();
+
+        if (logic.check_state())
+            break;
     }
 }

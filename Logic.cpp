@@ -116,3 +116,70 @@ void Logic::setCellValues()
 		}
 	}
 }
+
+void Logic::setVisibleCells(int x, int y)
+{
+	if (map[x][y].getIsVisible())
+		return ;
+
+	map[x][y].setIsVisible(true);
+
+	if (!map[x][y].getIsBomb() && !map[x][y].getBombsNear())
+	{
+		if (x - 1 >= 0 && y - 1 >= 0)
+			setVisibleCells(x - 1, y - 1);
+		if (x - 1 >= 0 )
+			setVisibleCells(x - 1, y);
+		if (x - 1 >= 0 && y + 1 < size)
+			setVisibleCells(x - 1, y + 1);
+		if (y - 1 >= 0 )
+			setVisibleCells(x, y - 1);
+		if (y + 1 < size )
+			setVisibleCells(x, y + 1);
+		if (x + 1 < size && y - 1 >= 0)
+			setVisibleCells(x + 1, y - 1);
+		if (x + 1 < size )
+			setVisibleCells(x + 1, y);
+		if (x + 1 < size && y + 1 < size)
+			setVisibleCells(x + 1, y + 1);
+	}
+}
+
+bool Logic::check_state()
+{
+	if (check_win() || check_lose())
+		return true;
+	return false;
+}
+
+bool Logic::check_win()
+{
+	for (int i = 0; i < size; ++i)
+	{
+		for (int j = 0; j < size; ++j)
+		{
+			if (!map[i][j].getIsVisible() && !map[i][j].getIsBomb())
+		    	return false;
+		}
+	}
+	std::cout << "YOU ARE THE GOD OF MINESWEEPER!" << std::endl;
+	sleep(3);
+	return true;
+}
+
+bool Logic::check_lose()
+{
+	for (int i = 0; i < size; ++i)
+	{
+		for (int j = 0; j < size; ++j)
+		{
+			if (map[i][j].getIsBomb() && map[i][j].getIsVisible())
+			{
+				std::cout << "LOOSER" << std::endl;
+				sleep(3);
+		    	return true;
+			}
+		}
+	}
+	return false;
+}
