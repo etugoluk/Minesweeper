@@ -1,0 +1,1 @@
+g++ -std=c++11 GUI.cpp Logic.cpp Cell.cpp main.cpp -o minesweeper -lsfml-graphics -lsfml-window -lsfml-system
