@@ -1,5 +1,6 @@
 #include "GUI.hpp"
-#include <iostream>
+// #include <iostream>
+
 GUI::GUI()
 {
 	windowSize = 500;

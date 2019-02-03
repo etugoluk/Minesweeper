@@ -1,8 +1,8 @@
 #include "Logic.hpp"
 #include <unistd.h>
-#include <ctime>
 #include <cstdlib>
 #include <iostream>
+
 Logic::Logic(int size) : size(size), bombSize(size)
 {
 	srand(unsigned(std::time(0)));
@@ -14,20 +14,11 @@ Logic::~Logic()
 	destroyMap();
 }
 
-int  Logic::getSize() const
-{
-	return size;
-}
+int  Logic::getSize() const { return size; }
 
-int  Logic::getBombSize() const
-{
-	return bombSize;
-}
+int  Logic::getBombSize() const { return bombSize; }
 
-Cell** Logic::getMap() const
-{
-	return map;
-}
+Cell** Logic::getMap() const { return map; }
 
 void Logic::createMap()
 {
@@ -85,22 +76,15 @@ int Logic::countBombs(int x, int y)
 {
 	int count = 0;
 
-	if (x - 1 >= 0 && y - 1 >= 0 && map[x - 1][y - 1].getIsBomb())
-		++count;
-	if (x - 1 >= 0 && map[x - 1][y].getIsBomb())
-		++count;
-	if (x - 1 >= 0 && y + 1 < size && map[x - 1][y + 1].getIsBomb())
-		++count;
-	if (y - 1 >= 0 && map[x][y - 1].getIsBomb())
-		++count;
-	if (y + 1 < size && map[x][y + 1].getIsBomb())
-		++count;
-	if (x + 1 < size && y - 1 >= 0 && map[x + 1][y - 1].getIsBomb())
-		++count;
-	if (x + 1 < size && map[x + 1][y].getIsBomb())
-		++count;
-	if (x + 1 < size && y + 1 < size && map[x + 1][y + 1].getIsBomb())
-		++count;
+	for (int i = x - 1; i <= x + 1; ++i)
+	{
+		for (int j = y - 1; j <= y + 1; ++j)
+		{
+			if (i >= 0 && j >= 0 && i < size && j < size
+				&& map[i][j].getIsBomb())
+					++count;
+		}
+	}
 
 	return count;
 }
@@ -126,22 +110,14 @@ void Logic::setVisibleCells(int x, int y)
 
 	if (!map[x][y].getIsBomb() && !map[x][y].getBombsNear())
 	{
-		if (x - 1 >= 0 && y - 1 >= 0)
-			setVisibleCells(x - 1, y - 1);
-		if (x - 1 >= 0 )
-			setVisibleCells(x - 1, y);
-		if (x - 1 >= 0 && y + 1 < size)
-			setVisibleCells(x - 1, y + 1);
-		if (y - 1 >= 0 )
-			setVisibleCells(x, y - 1);
-		if (y + 1 < size )
-			setVisibleCells(x, y + 1);
-		if (x + 1 < size && y - 1 >= 0)
-			setVisibleCells(x + 1, y - 1);
-		if (x + 1 < size )
-			setVisibleCells(x + 1, y);
-		if (x + 1 < size && y + 1 < size)
-			setVisibleCells(x + 1, y + 1);
+		for (int i = x - 1; i <= x + 1; ++i)
+		{
+			for (int j = y - 1; j <= y + 1; ++j)
+			{
+				if (i >= 0 && j >= 0 && i < size && j < size)
+					setVisibleCells(i, j);
+			}
+		}
 	}
 }
 
