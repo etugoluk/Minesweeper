@@ -1,12 +1,25 @@
 #include "GUI.hpp"
-// #include <iostream>
+#include <iostream>
+#include <ctime>
 
 GUI::GUI()
 {
 	windowSize = 500;
-	window.create(sf::VideoMode(windowSize, windowSize), "Minesweeper");
+	window.create(sf::VideoMode(windowSize, windowSize + 50), "Minesweeper");
 	cellSize = 50;
 	isFirstClick = true;
+    isGame = true;
+
+    font.loadFromFile("font/Courier.dfont");
+    timer.setFont(font);
+    timer.setFillColor(sf::Color(255, 255, 255));
+    timer.setCharacterSize(25);
+    timer.setPosition(5, windowSize + 5);
+
+    state.setFont(font);
+    state.setFillColor(sf::Color(255, 255, 255));
+    state.setCharacterSize(25);
+    state.setPosition(200, windowSize + 5);
 }
 
 GUI::~GUI(){
@@ -49,8 +62,9 @@ void GUI::drawMap(Cell** map, int size)
 void GUI::execute(Logic & logic)
 {
 	Cell** map = logic.getMap();
+    std::clock_t start = std::clock();
 
-	while (window.isOpen())
+	while (window.isOpen() && isGame)
     {
         sf::Event event;
 
@@ -58,7 +72,8 @@ void GUI::execute(Logic & logic)
         {
         	if (event.type == sf::Event::Closed)
                 window.close();
-            if (event.type == sf::Event::MouseButtonPressed)
+            if (event.type == sf::Event::MouseButtonPressed &&
+                event.mouseButton.x < 500 && event.mouseButton.y < 500)
             {
                 if (event.mouseButton.button == sf::Mouse::Right)
                 {
@@ -82,9 +97,23 @@ void GUI::execute(Logic & logic)
 
         window.clear();
         drawMap(logic.getMap(), logic.getSize());
-        window.display();
+        timer.setString("Time: " + std::to_string(static_cast<int>((std::clock() - start )/CLOCKS_PER_SEC)));
+        window.draw(timer);
 
-        if (logic.check_state())
-            break;
+        switch (logic.check_state())
+        {
+            case 1:
+                state.setString("YOU WIN :D");
+                window.draw(state);
+                isGame = false;
+                break;
+            case -1:
+                state.setString("YOU LOSE ._.");
+                window.draw(state);
+                isGame = false;
+                break;
+        }
+
+        window.display();
     }
 }

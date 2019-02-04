@@ -23,7 +23,7 @@ public:
 	int  countBombs(int x, int y);
 	void setVisibleCells(int x, int y);
 
-	bool check_state();
+	int  check_state();
     bool check_win();
     bool check_lose();
 };

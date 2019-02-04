@@ -121,11 +121,13 @@ void Logic::setVisibleCells(int x, int y)
 	}
 }
 
-bool Logic::check_state()
+int Logic::check_state()
 {
-	if (check_win() || check_lose())
-		return true;
-	return false;
+	if (check_win())
+		return 1;
+	else if (check_lose())
+		return -1;
+	return 0;
 }
 
 bool Logic::check_win()
@@ -138,8 +140,6 @@ bool Logic::check_win()
 		    	return false;
 		}
 	}
-	std::cout << "YOU ARE THE GOD OF MINESWEEPER!" << std::endl;
-	sleep(3);
 	return true;
 }
 
@@ -150,11 +150,7 @@ bool Logic::check_lose()
 		for (int j = 0; j < size; ++j)
 		{
 			if (map[i][j].getIsBomb() && map[i][j].getIsVisible())
-			{
-				std::cout << "LOOSER" << std::endl;
-				sleep(3);
 		    	return true;
-			}
 		}
 	}
 	return false;

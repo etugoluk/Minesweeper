@@ -6,9 +6,13 @@
 class GUI
 {
 	bool				isFirstClick;
+	bool				isGame;
 	int					windowSize;
 	int					cellSize;
 	sf::RenderWindow	window;
+	sf::Text			timer;
+	sf::Text			state;
+    sf::Font			font;
 
 public:
 	GUI();

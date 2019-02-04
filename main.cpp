@@ -8,6 +8,7 @@ int main()
 	GUI gui;
 
 	gui.execute(game);
+	sleep(3);
 
 	return 0;
 }
