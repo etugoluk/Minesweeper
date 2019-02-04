@@ -16,9 +16,9 @@ public:
 	Cell** getMap() const;
 
 	void createMap();
-	void generateMap();
 	void destroyMap();
-	void generateBombs();
+	void generateMap(int cx, int cy);
+	void generateBombs(int cx, int cy);
 	void setCellValues();
 	int  countBombs(int x, int y);
 	void setVisibleCells(int x, int y);

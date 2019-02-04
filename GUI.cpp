@@ -49,9 +49,11 @@ void GUI::drawMap(Cell** map, int size)
 void GUI::execute(Logic & logic)
 {
 	Cell** map = logic.getMap();
+
 	while (window.isOpen())
     {
         sf::Event event;
+
         while (window.pollEvent(event))
         {
         	if (event.type == sf::Event::Closed)
@@ -65,22 +67,19 @@ void GUI::execute(Logic & logic)
                     else if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
                        map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsMarked(true);
                 }
-                if (event.mouseButton.button == sf::Mouse::Left)
+                else if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     if (isFirstClick)
                     {
-                        map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsVisible(true);
-                        logic.generateMap();
+                        logic.generateMap(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize);
                         isFirstClick = false;
-                        map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].setIsVisible(false);
                     }
                     if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
-                    {
                         logic.setVisibleCells(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize);
-                    }
                 }
             }
         }
+
         window.clear();
         drawMap(logic.getMap(), logic.getSize());
         window.display();

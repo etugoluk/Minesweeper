@@ -29,9 +29,9 @@ void Logic::createMap()
 	}
 }
 
-void Logic::generateMap()
+void Logic::generateMap(int cx, int cy)
 {
-	generateBombs();
+	generateBombs(cx, cy);
 	setCellValues();
 	for (int i = 0; i < size; ++i)
 	{
@@ -55,7 +55,7 @@ void Logic::destroyMap()
 	delete [] map;
 }
 
-void Logic::generateBombs()
+void Logic::generateBombs(int cx, int cy)
 {
 	int x, y;
 
@@ -66,7 +66,7 @@ void Logic::generateBombs()
 	        x = rand() % size;
 	        y = rand() % size;
 	    }
-		while (map[x][y].getIsBomb() || map[x][y].getIsVisible());
+		while (map[x][y].getIsBomb() || x == cx || y == cy);
 
 		map[x][y].setIsBomb(true);
 	}
