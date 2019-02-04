@@ -4,11 +4,13 @@
 
 int main()
 {
-	Logic game(10);
-	GUI gui;
+	int size = 5;
 
+	Logic game(size);
+
+	GUI gui(size);
 	gui.execute(game);
-	sleep(3);
 
+	sleep(3);
 	return 0;
 }

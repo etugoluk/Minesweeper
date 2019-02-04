@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "Logic.hpp"
 
+constexpr double imageSize = 50.0;
+
 class GUI
 {
 	bool				isFirstClick;
@@ -15,7 +17,7 @@ class GUI
     sf::Font			font;
 
 public:
-	GUI();
+	GUI(int mapSize);
 	~GUI();
 
 	void drawCell(Cell const & cell, int x, int y);

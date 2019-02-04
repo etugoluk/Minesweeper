@@ -33,17 +33,6 @@ void Logic::generateMap(int cx, int cy)
 {
 	generateBombs(cx, cy);
 	setCellValues();
-	for (int i = 0; i < size; ++i)
-	{
-		for (int j = 0; j < size; ++j)
-		{
-			if (!map[i][j].getIsBomb())
-		    	std::cout << map[i][j].getBombsNear() << " ";
-		    else
-		    	std::cout << "b" << " ";
-		}
-		std::cout << std::endl;
-	}
 }
 
 void Logic::destroyMap()

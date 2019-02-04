@@ -2,11 +2,11 @@
 #include <iostream>
 #include <ctime>
 
-GUI::GUI()
+GUI::GUI(int mapSize)
 {
 	windowSize = 500;
 	window.create(sf::VideoMode(windowSize, windowSize + 50), "Minesweeper");
-	cellSize = 50;
+	cellSize = windowSize / mapSize;
 	isFirstClick = true;
     isGame = true;
 
@@ -14,7 +14,7 @@ GUI::GUI()
     timer.setFont(font);
     timer.setFillColor(sf::Color(255, 255, 255));
     timer.setCharacterSize(25);
-    timer.setPosition(5, windowSize + 5);
+    timer.setPosition(10, windowSize + 5);
 
     state.setFont(font);
     state.setFillColor(sf::Color(255, 255, 255));
@@ -41,9 +41,11 @@ void GUI::drawCell(Cell const & cell, int x, int y)
     else
         fileName = "img/num" + std::to_string(cell.getBombsNear()) + ".png";
 
-    texture.loadFromFile(fileName.c_str(), sf::IntRect(0, 0, cellSize, cellSize));
+    texture.loadFromFile(fileName.c_str());
+
     sf::Sprite sprite;
     sprite.setTexture(texture);
+    sprite.setScale(cellSize / imageSize, cellSize / imageSize);
     sprite.setPosition(y * cellSize, x * cellSize);
 	window.draw(sprite);
 }
