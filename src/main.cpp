@@ -1,7 +1,6 @@
-#include "GUI.hpp"
-#include "Logic.hpp"
-#include "Exception.hpp"
-#include <unistd.h>
+#include "../GUI/GUI.hpp"
+#include "../Logic/Logic.hpp"
+#include "../inc/Exception.hpp"
 #include <iostream>
 
 int main(int argc, char **argv)
@@ -19,7 +18,6 @@ int main(int argc, char **argv)
 		Logic game(size);
 		GUI gui(size);
 		gui.execute(game);
-		sleep(3);
 	}
 	catch (std::exception &e)
 	{

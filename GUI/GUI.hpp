@@ -1,14 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Logic.hpp"
+#include "../Logic/Logic.hpp"
 
 constexpr double imageSize = 50.0;
 
 class GUI
 {
 	bool				isFirstClick;
-	bool				isGame;
 	int					windowSize;
 	int					cellSize;
 	sf::RenderWindow	window;

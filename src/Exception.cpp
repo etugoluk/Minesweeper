@@ -1,4 +1,4 @@
-#include "Exception.hpp"
+#include "../inc/Exception.hpp"
 
 const char* BadArguments::what() const throw()
 {

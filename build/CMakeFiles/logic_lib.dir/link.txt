@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -std=c++11 -Wall -Wextra -Werror -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -dynamiclib -Wl,-headerpad_max_install_names  -o liblogic_lib.dylib -install_name @rpath/liblogic_lib.dylib CMakeFiles/logic_lib.dir/Logic/Cell.cpp.o CMakeFiles/logic_lib.dir/Logic/Logic.cpp.o 

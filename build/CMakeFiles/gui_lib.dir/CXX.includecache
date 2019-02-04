@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/etugoluk/Desktop/game/GUI/GUI.cpp
+GUI.hpp
+/Users/etugoluk/Desktop/game/GUI/GUI.hpp
+iostream
+-
+ctime
+-
+
+/Users/etugoluk/Desktop/game/GUI/GUI.hpp
+SFML/Graphics.hpp
+-
+../Logic/Logic.hpp
+/Users/etugoluk/Desktop/game/Logic/Logic.hpp
+
+/Users/etugoluk/Desktop/game/Logic/Cell.hpp
+
+/Users/etugoluk/Desktop/game/Logic/Logic.hpp
+Cell.hpp
+/Users/etugoluk/Desktop/game/Logic/Cell.hpp
+

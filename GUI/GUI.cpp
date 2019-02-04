@@ -8,7 +8,6 @@ GUI::GUI(int mapSize)
 	window.create(sf::VideoMode(windowSize, windowSize + 50), "Minesweeper");
 	cellSize = windowSize / mapSize;
 	isFirstClick = true;
-    isGame = true;
 
     font.loadFromFile("font/Courier.dfont");
     timer.setFont(font);
@@ -65,8 +64,9 @@ void GUI::execute(Logic & logic)
 {
 	Cell** map = logic.getMap();
     std::clock_t start = std::clock();
+    int gameStatus = 0;
 
-	while (window.isOpen() && isGame)
+	while (window.isOpen() && !gameStatus)
     {
         sf::Event event;
 
@@ -102,20 +102,18 @@ void GUI::execute(Logic & logic)
         timer.setString("Time: " + std::to_string(static_cast<int>((std::clock() - start )/CLOCKS_PER_SEC)));
         window.draw(timer);
 
-        switch (logic.check_state())
-        {
-            case 1:
-                state.setString("YOU WIN :D");
-                window.draw(state);
-                isGame = false;
-                break;
-            case -1:
-                state.setString("YOU LOSE ._.");
-                window.draw(state);
-                isGame = false;
-                break;
-        }
+        gameStatus = logic.check_state();
+        if (gameStatus == 1)
+            state.setString("YOU WIN :D");
+        else if (gameStatus == -1)
+            state.setString("YOU LOSE ._.");
+        else
+            state.setString("YOU CAN DO IT!");
 
+        window.draw(state);
         window.display();
+
+        if (gameStatus)
+            sf::sleep(sf::milliseconds(3000));
     }
 }
