@@ -1,16 +1,30 @@
 #include "GUI.hpp"
 #include "Logic.hpp"
+#include "Exception.hpp"
 #include <unistd.h>
+#include <iostream>
 
-int main()
+int main(int argc, char **argv)
 {
-	int size = 5;
+	try
+	{
+		if (argc != 2)
+			throw BadArguments();
 
-	Logic game(size);
+		int size = std::stoi(argv[1]);
 
-	GUI gui(size);
-	gui.execute(game);
+		if (size < 5 || size > 25)
+			throw BadArguments();
 
-	sleep(3);
+		Logic game(size);
+		GUI gui(size);
+		gui.execute(game);
+		sleep(3);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 	return 0;
 }
