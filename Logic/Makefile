@@ -10,18 +10,18 @@ OBJ_FILES 	=	$(SRC_FILES:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(FLAGS) -o $@ $(OBJ_FILES) $(LIB_FLAG) -lsfml-graphics -lsfml-window -lsfml-system
-	echo "\033[32m[ ✔ ] "Logic library is ready." \033[0m"
+	@$(CC) $(FLAGS) -o $@ $(OBJ_FILES) $(LIB_FLAG) -lsfml-graphics -lsfml-window -lsfml-system
+	@echo "\033[32m[ ✔ ] "Logic library is ready." \033[0m"
 
 %.o:%.cpp
-	$(CC) $(FLAGS) -c -o $@ $< -I $(INC_DIR) -I $(SFML_INC)
+	@$(CC) $(FLAGS) -c -o $@ $< -I $(INC_DIR) -I $(SFML_INC)
 
 clean:
-	rm -rf $(OBJ_FILES)
+	@rm -rf $(OBJ_FILES)
 
 fclean: clean
-	rm -rf $(NAME)
-	echo "\033[31m[ × ] "Logic library removed." \033[0m"
+	@rm -rf $(NAME)
+	@echo "\033[31m[ × ] "Logic library removed." \033[0m"
 
 re: fclean all
 

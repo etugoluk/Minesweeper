@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -std=c++11 -Wall -Wextra -Werror -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -dynamiclib -Wl,-headerpad_max_install_names  -o libgui_lib.dylib -install_name @rpath/libgui_lib.dylib CMakeFiles/gui_lib.dir/GUI/GUI.cpp.o 

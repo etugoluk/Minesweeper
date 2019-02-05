@@ -1,5 +1,0 @@
-/Users/etugoluk/Desktop/game/build/CMakeFiles/rebuild_cache.dir
-/Users/etugoluk/Desktop/game/build/CMakeFiles/edit_cache.dir
-/Users/etugoluk/Desktop/game/build/CMakeFiles/minesweeper.dir
-/Users/etugoluk/Desktop/game/build/CMakeFiles/gui_lib.dir
-/Users/etugoluk/Desktop/game/build/CMakeFiles/logic_lib.dir

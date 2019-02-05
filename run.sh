@@ -1,1 +1,0 @@
-g++ -std=c++11 -Wall -Wextra -Werror GUI/GUI.cpp Logic/Logic.cpp Logic/Cell.cpp src/Exception.cpp src/main.cpp -o minesweeper -lsfml-graphics -lsfml-window -lsfml-system
