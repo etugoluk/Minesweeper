@@ -3,7 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "../Logic/Logic.hpp"
 
-constexpr double imageSize = 50.0;
+constexpr int		imageSize = 50.0;
+constexpr int		screenSize = 500;
 
 class GUI
 {

@@ -4,12 +4,14 @@
 
 GUI::GUI(int mapSize)
 {
-	windowSize = 500;
+    cellSize = screenSize / mapSize;
+    windowSize = cellSize * mapSize;
 	window.create(sf::VideoMode(windowSize, windowSize + 50), "Minesweeper");
-	cellSize = windowSize / mapSize;
+
 	isFirstClick = true;
 
     font.loadFromFile("font/Courier.dfont");
+
     timer.setFont(font);
     timer.setFillColor(sf::Color(255, 255, 255));
     timer.setCharacterSize(25);
@@ -44,7 +46,7 @@ void GUI::drawCell(Cell const & cell, int x, int y)
 
     sf::Sprite sprite;
     sprite.setTexture(texture);
-    sprite.setScale(cellSize / imageSize, cellSize / imageSize);
+    sprite.setScale(static_cast<double>(cellSize) / imageSize, static_cast<double>(cellSize) / imageSize);
     sprite.setPosition(y * cellSize, x * cellSize);
 	window.draw(sprite);
 }
