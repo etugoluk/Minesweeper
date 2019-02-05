@@ -28,4 +28,14 @@ public:
 	void check_event(sf::Event const & event, Logic & logic);
 	void drawCell(Cell const & cell, int x, int y);
 	void drawMap(Cell** map, int size);
+
+	class BadImage: public std::exception {
+    public:
+        const char* what() const throw();
+    };
+    
+    class BadFont: public std::exception {
+    public:
+        const char* what() const throw();
+    };
 };

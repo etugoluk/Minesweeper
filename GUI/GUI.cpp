@@ -21,7 +21,8 @@ GUI::~GUI(){
 
 void GUI::initText()
 {
-    font.loadFromFile("font/Courier.dfont");
+    if (!font.loadFromFile("font/Courier.dfont"))
+        throw BadFont();
 
     timer.setFont(font);
     timer.setFillColor(sf::Color(255, 255, 255));
@@ -48,7 +49,8 @@ void GUI::drawCell(Cell const & cell, int x, int y)
     else
         fileName = "img/num" + std::to_string(cell.getBombsNear()) + ".png";
 
-    texture.loadFromFile(fileName.c_str());
+    if (!texture.loadFromFile(fileName.c_str()))
+        throw BadImage();
 
     sf::Sprite sprite;
     sprite.setTexture(texture);
@@ -104,7 +106,7 @@ void GUI::execute(Logic & logic)
 	while (window.isOpen() && !gameStatus)
     {
         sf::Event event;
-        while (window.pollEvent(event))
+        if (window.pollEvent(event))
             check_event(event, logic);
 
         window.clear();
@@ -131,4 +133,14 @@ void GUI::execute(Logic & logic)
         if (gameStatus)
             sf::sleep(sf::milliseconds(3000));
     }
+}
+
+const char * GUI::BadImage::what() const throw()
+{
+    return "Bad file access to image.";
+}
+
+const char * GUI::BadFont::what() const throw()
+{
+    return "Bad file access to font.";
 }
