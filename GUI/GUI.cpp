@@ -6,7 +6,7 @@ GUI::GUI(int mapSize)
 {
     cellSize = screenSize / mapSize;
     windowSize = cellSize * mapSize;
-	window.create(sf::VideoMode(windowSize, windowSize + 50), "Minesweeper");
+	window.create(sf::VideoMode(windowSize, windowSize + 50), "Minesweeper", sf::Style::Close);
 
 	isFirstClick = true;
     gameStatus = 0;

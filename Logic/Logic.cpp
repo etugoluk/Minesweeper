@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 
-Logic::Logic(int size) : size(size), bombSize(size)
+Logic::Logic(int size) : size(size), bombSize(size * 2)
 {
 	srand(unsigned(std::time(0)));
 	createMap();
