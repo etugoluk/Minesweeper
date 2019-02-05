@@ -16,6 +16,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/Users/etugoluk/Desktop/game/build/CMakeFiles/logic_lib.dir/DependInfo.cmake"
+  "/Users/etugoluk/Desktop/game/build/CMakeFiles/gui_lib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

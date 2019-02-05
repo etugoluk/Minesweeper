@@ -95,6 +95,7 @@ minesweeper: CMakeFiles/minesweeper.dir/src/main.cpp.o
 minesweeper: CMakeFiles/minesweeper.dir/src/Exception.cpp.o
 minesweeper: CMakeFiles/minesweeper.dir/build.make
 minesweeper: liblogic_lib.dylib
+minesweeper: libgui_lib.dylib
 minesweeper: CMakeFiles/minesweeper.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/etugoluk/Desktop/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable minesweeper"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minesweeper.dir/link.txt --verbose=$(VERBOSE)

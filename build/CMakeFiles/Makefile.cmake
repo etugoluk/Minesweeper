@@ -48,5 +48,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/minesweeper.dir/DependInfo.cmake"
+  "CMakeFiles/gui_lib.dir/DependInfo.cmake"
   "CMakeFiles/logic_lib.dir/DependInfo.cmake"
   )

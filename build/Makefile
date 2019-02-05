@@ -124,6 +124,19 @@ minesweeper/fast:
 .PHONY : minesweeper/fast
 
 #=============================================================================
+# Target rules for targets named gui_lib
+
+# Build rule for target.
+gui_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gui_lib
+.PHONY : gui_lib
+
+# fast build rule for target.
+gui_lib/fast:
+	$(MAKE) -f CMakeFiles/gui_lib.dir/build.make CMakeFiles/gui_lib.dir/build
+.PHONY : gui_lib/fast
+
+#=============================================================================
 # Target rules for targets named logic_lib
 
 # Build rule for target.
@@ -135,6 +148,33 @@ logic_lib: cmake_check_build_system
 logic_lib/fast:
 	$(MAKE) -f CMakeFiles/logic_lib.dir/build.make CMakeFiles/logic_lib.dir/build
 .PHONY : logic_lib/fast
+
+GUI/GUI.o: GUI/GUI.cpp.o
+
+.PHONY : GUI/GUI.o
+
+# target to build an object file
+GUI/GUI.cpp.o:
+	$(MAKE) -f CMakeFiles/gui_lib.dir/build.make CMakeFiles/gui_lib.dir/GUI/GUI.cpp.o
+.PHONY : GUI/GUI.cpp.o
+
+GUI/GUI.i: GUI/GUI.cpp.i
+
+.PHONY : GUI/GUI.i
+
+# target to preprocess a source file
+GUI/GUI.cpp.i:
+	$(MAKE) -f CMakeFiles/gui_lib.dir/build.make CMakeFiles/gui_lib.dir/GUI/GUI.cpp.i
+.PHONY : GUI/GUI.cpp.i
+
+GUI/GUI.s: GUI/GUI.cpp.s
+
+.PHONY : GUI/GUI.s
+
+# target to generate assembly for a file
+GUI/GUI.cpp.s:
+	$(MAKE) -f CMakeFiles/gui_lib.dir/build.make CMakeFiles/gui_lib.dir/GUI/GUI.cpp.s
+.PHONY : GUI/GUI.cpp.s
 
 Logic/Cell.o: Logic/Cell.cpp.o
 
@@ -253,7 +293,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... minesweeper"
+	@echo "... gui_lib"
 	@echo "... logic_lib"
+	@echo "... GUI/GUI.o"
+	@echo "... GUI/GUI.i"
+	@echo "... GUI/GUI.s"
 	@echo "... Logic/Cell.o"
 	@echo "... Logic/Cell.i"
 	@echo "... Logic/Cell.s"
