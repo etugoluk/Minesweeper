@@ -2,7 +2,7 @@
 #include "../Logic/Logic.hpp"
 #include "../inc/Exception.hpp"
 #include <iostream>
-#include <unistd.h>
+
 int main(int argc, char **argv)
 {
 	try

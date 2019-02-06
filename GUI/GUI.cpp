@@ -76,7 +76,7 @@ void GUI::check_event(sf::Event const & event, Logic & logic)
 
     if (event.type == sf::Event::Closed)
         window.close();
-    if (event.type == sf::Event::MouseButtonPressed &&
+    else if (event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.x < windowSize && event.mouseButton.y < windowSize)
     {
         if (event.mouseButton.button == sf::Mouse::Right)
