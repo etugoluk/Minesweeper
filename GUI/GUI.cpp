@@ -74,9 +74,9 @@ void GUI::check_event(sf::Event const & event, Logic & logic)
 {
     Cell** map = logic.getMap();
 
-    if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
+    if (event.type == sf::Event::Closed)
         window.close();
-    else if (event.type == sf::Event::MouseButtonPressed &&
+    if (event.type == sf::Event::MouseButtonPressed &&
         event.mouseButton.x < windowSize && event.mouseButton.y < windowSize)
     {
         if (event.mouseButton.button == sf::Mouse::Right)
