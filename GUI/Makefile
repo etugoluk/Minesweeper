@@ -1,8 +1,8 @@
 NAME 		=	libgui.so      
 
 CC			=	g++
-FLAGS  		=	-std=c++11 -Wall -Wextra -Werror
-LIB_FLAG	=	-shared -nostartfiles -dynamiclib
+FLAGS  		=	-std=c++11 -fPIC -Wall -Wextra -Werror
+LIB_FLAG	=	-shared
 
 SRC_FILES	=	GUI.cpp ../Logic/Logic.cpp ../Logic/Cell.cpp
 OBJ_FILES 	=	$(SRC_FILES:.cpp=.o) 												

@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <iostream>
+#include <ctime>
 
 Logic::Logic(int size) : size(size), bombSize(size * 2)
 {

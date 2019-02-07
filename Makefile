@@ -4,16 +4,16 @@ SRC_DIR =   ./src/
 INC_DIR =   ./inc/
 
 CC      =   g++
-FLAGS   =   -Wall -Wextra -Werror
+FLAGS   =   -std=c++11 -Wall -Wextra -Werror
 SRC     =   main.cpp Exception.cpp
 OBJ     =   $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 
-LFLAGS  =  -L. -lgui -llogic
+LFLAGS  =  -L$(shell pwd) -Wl,-rpath=$(shell pwd) -llogic -lgui
 
 all: $(NAME)
 
 $(NAME): logic gui $(OBJ)
-	@$(CC) $(FLAGS) $(LFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(LFLAGS)
 	@echo "\033[32m[ ✔ ] "$(NAME) is ready." \033[0m"
 
 logic:

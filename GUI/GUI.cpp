@@ -25,12 +25,12 @@ void GUI::initText()
         throw BadFont();
 
     timer.setFont(font);
-    timer.setFillColor(sf::Color(255, 255, 255));
+    // timer.setFillColor(sf::Color(255, 255, 255));
     timer.setCharacterSize(25);
     timer.setPosition(10, windowSize + 5);
 
     state.setFont(font);
-    state.setFillColor(sf::Color(255, 255, 255));
+    // state.setFillColor(sf::Color(255, 255, 255));
     state.setCharacterSize(25);
     state.setPosition(200, windowSize + 5);
 }
