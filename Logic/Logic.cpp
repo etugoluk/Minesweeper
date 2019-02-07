@@ -120,11 +120,15 @@ bool Logic::setPossibleCells(int x, int y)
 	{
 		for (int j = y - 1; j <= y + 1; ++j)
 		{
-			if (map[i][j].getIsBomb() && !map[i][j].getIsMarked())
-				result = false;
-			if (!map[i][j].getIsMarked() &&
-				i >= 0 && j >= 0 && i < size && j < size)
-				map[i][j].setIsVisible(true);
+			if (i >= 0 && j >= 0 && i < size && j < size)
+			{
+				if (map[i][j].getIsBomb() && !map[i][j].getIsMarked())
+					result = false;
+				if (!map[i][j].getBombsNear())
+					setVisibleCells(i,j); //should be possible
+				if (!map[i][j].getIsMarked())
+					map[i][j].setIsVisible(true);
+			}
 		}
 	}
 	return result;
