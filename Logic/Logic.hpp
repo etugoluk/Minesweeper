@@ -19,9 +19,12 @@ public:
 	void destroyMap();
 	void generateMap(int cx, int cy);
 	void clearMap();
+
 	void generateBombs(int cx, int cy);
 	void setCellValues();
 	int  countBombs(int x, int y);
+	int  countFlags(int x, int y);
 	void setVisibleCells(int x, int y);
+	bool setPossibleCells(int x, int y);
     bool check_win();
 };

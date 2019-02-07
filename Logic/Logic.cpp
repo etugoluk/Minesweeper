@@ -1,7 +1,7 @@
 #include "Logic.hpp"
 #include <cstdlib>
 #include <ctime>
-
+#include <iostream>
 Logic::Logic(int size) : size(size), bombSize(size * 1.5)
 {
 	srand(unsigned(std::time(0)));
@@ -83,6 +83,23 @@ int Logic::countBombs(int x, int y)
 	return count;
 }
 
+int Logic::countFlags(int x, int y)
+{
+	int count = 0;
+
+	for (int i = x - 1; i <= x + 1; ++i)
+	{
+		for (int j = y - 1; j <= y + 1; ++j)
+		{
+			if (i >= 0 && j >= 0 && i < size && j < size
+				&& map[i][j].getIsMarked())
+					++count;
+		}
+	}
+
+	return count;
+}
+
 void Logic::setCellValues()
 {
 	for (int i = 0; i < size; ++i)
@@ -95,11 +112,28 @@ void Logic::setCellValues()
 	}
 }
 
+bool Logic::setPossibleCells(int x, int y)
+{
+	bool result = true;
+
+	for (int i = x - 1; i <= x + 1; ++i)
+	{
+		for (int j = y - 1; j <= y + 1; ++j)
+		{
+			if (map[i][j].getIsBomb() && !map[i][j].getIsMarked())
+				result = false;
+			if (!map[i][j].getIsMarked() &&
+				i >= 0 && j >= 0 && i < size && j < size)
+				map[i][j].setIsVisible(true);
+		}
+	}
+	return result;
+}
+
 void Logic::setVisibleCells(int x, int y)
 {
-	if (map[x][y].getIsVisible())
+	if (map[x][y].getIsVisible() || map[x][y].getIsMarked())
 		return ;
-
 	map[x][y].setIsVisible(true);
 
 	if (!map[x][y].getIsBomb() && !map[x][y].getBombsNear())
