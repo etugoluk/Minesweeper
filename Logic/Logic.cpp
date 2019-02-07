@@ -34,6 +34,12 @@ void Logic::generateMap(int cx, int cy)
 	setCellValues();
 }
 
+void Logic::clearMap()
+{
+	destroyMap();
+	createMap();
+}
+
 void Logic::destroyMap()
 {
 	for (int i = 0; i < size; ++i)

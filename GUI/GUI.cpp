@@ -100,11 +100,18 @@ void GUI::check_event(sf::Event const & event, Logic & logic)
     }
 }
 
-void GUI::execute(Logic & logic)
+void GUI::refresh(Logic & logic)
+{
+    gameStatus = 0;
+    isFirstClick = 1;
+    logic.clearMap();
+}
+
+int GUI::execute(Logic & logic)
 {
     std::clock_t start = std::clock();
 
-	while (window.isOpen() && !gameStatus)
+	while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
@@ -134,8 +141,12 @@ void GUI::execute(Logic & logic)
         window.display();
 
         if (gameStatus)
+        {
             sf::sleep(sf::milliseconds(3000));
+            return 1;
+        }
     }
+    return 0;
 }
 
 const char * GUI::BadImage::what() const throw()

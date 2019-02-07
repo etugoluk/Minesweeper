@@ -18,6 +18,7 @@ public:
 	void createMap();
 	void destroyMap();
 	void generateMap(int cx, int cy);
+	void clearMap();
 	void generateBombs(int cx, int cy);
 	void setCellValues();
 	int  countBombs(int x, int y);

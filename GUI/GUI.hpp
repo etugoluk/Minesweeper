@@ -23,10 +23,11 @@ public:
 	~GUI();
 
 	void initText();
-	void execute(Logic & logic);
+	int  execute(Logic & logic);
 	void check_event(sf::Event const & event, Logic & logic);
 	void drawCell(Cell const & cell, int x, int y);
 	void drawMap(Cell** map, int size);
+	void refresh(Logic & logic);
 
 	class BadImage: public std::exception {
     public:

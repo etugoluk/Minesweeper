@@ -17,7 +17,12 @@ int main(int argc, char **argv)
 
 		Logic game(size);
 		GUI gui(size);
-		gui.execute(game);
+		while (1)
+		{
+			if (!gui.execute(game))
+				break ;
+			gui.refresh(game);
+		}
 	}
 	catch (std::exception &e)
 	{
