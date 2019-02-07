@@ -17,11 +17,11 @@ $(NAME): logic gui $(OBJ)
 	@echo "\033[32m[ ✔ ] "$(NAME) is ready." \033[0m"
 
 logic:
-	@make -C Logic
+	@make -sC Logic
 	@mv Logic/liblogic.so .
 
 gui:
-	@make -C GUI
+	@make -sC GUI
 	@mv GUI/libgui.so .
 
 $(OBJ): $(OBJ_DIR)
@@ -33,15 +33,15 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
 	@$(CC) -c $< -o $@ $(FLAGS) -std=c++11
 
 clean:
-	@make -C Logic clean
-	@make -C GUI clean
+	@make -sC Logic clean
+	@make -sC GUI clean
 	@rm -f $(OBJ)
 
 fclean: clean
 	@rm  -f libgui.so
 	@rm  -f liblogic.so
-	@make -C Logic fclean
-	@make -C GUI fclean
+	@make -sC Logic fclean
+	@make -sC GUI fclean
 	@rm -f $(NAME)
 	@rm -rf $(OBJ_DIR)
 	@echo "\033[31m[ × ] "$(NAME) removed." \033[0m"

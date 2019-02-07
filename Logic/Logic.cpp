@@ -1,10 +1,8 @@
 #include "Logic.hpp"
-#include <unistd.h>
 #include <cstdlib>
-#include <iostream>
 #include <ctime>
 
-Logic::Logic(int size) : size(size), bombSize(size * 2)
+Logic::Logic(int size) : size(size), bombSize(size * 1.5)
 {
 	srand(unsigned(std::time(0)));
 	createMap();
@@ -111,15 +109,6 @@ void Logic::setVisibleCells(int x, int y)
 	}
 }
 
-int Logic::check_state()
-{
-	if (check_win())
-		return 1;
-	else if (check_lose())
-		return -1;
-	return 0;
-}
-
 bool Logic::check_win()
 {
 	for (int i = 0; i < size; ++i)
@@ -131,17 +120,4 @@ bool Logic::check_win()
 		}
 	}
 	return true;
-}
-
-bool Logic::check_lose()
-{
-	for (int i = 0; i < size; ++i)
-	{
-		for (int j = 0; j < size; ++j)
-		{
-			if (map[i][j].getIsBomb() && map[i][j].getIsVisible())
-		    	return true;
-		}
-	}
-	return false;
 }

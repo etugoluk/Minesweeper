@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Logic/Logic.hpp"
-#include <array>
 
 constexpr int		imageSize = 50;
 constexpr int		screenSize = 500;

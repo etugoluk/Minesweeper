@@ -5,7 +5,7 @@ FLAGS  		=	-std=c++11 -fPIC -Wall -Wextra -Werror
 LIB_FLAG	=	-shared
 
 SRC_FILES	=	Logic.cpp Cell.cpp
-OBJ_FILES 	=	$(SRC_FILES:.cpp=.o) 												
+OBJ_FILES 	=	$(SRC_FILES:.cpp=.o)
 
 all: $(NAME)
 

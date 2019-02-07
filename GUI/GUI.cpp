@@ -1,6 +1,4 @@
 #include "GUI.hpp"
-#include <iostream>
-#include <ctime>
 
 GUI::GUI(int mapSize)
 {
@@ -25,12 +23,10 @@ void GUI::initText()
         throw BadFont();
 
     timer.setFont(font);
-    // timer.setFillColor(sf::Color(255, 255, 255));
     timer.setCharacterSize(25);
     timer.setPosition(10, windowSize + 5);
 
     state.setFont(font);
-    // state.setFillColor(sf::Color(255, 255, 255));
     state.setCharacterSize(25);
     state.setPosition(200, windowSize + 5);
 }
@@ -42,10 +38,10 @@ void GUI::drawCell(Cell const & cell, int x, int y)
 
 	if (cell.getIsMarked())
         fileName = "img/flaged.png";
+    else if (gameStatus == -1 && cell.getIsBomb())
+        fileName = "img/bomb.png";
 	else if (!cell.getIsVisible())
     	fileName = "img/closed.png";
-    else if (cell.getIsVisible() && cell.getIsBomb())
-    	fileName = "img/bomb.png";
     else
         fileName = "img/num" + std::to_string(cell.getBombsNear()) + ".png";
 
@@ -93,8 +89,13 @@ void GUI::check_event(sf::Event const & event, Logic & logic)
                 logic.generateMap(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize);
                 isFirstClick = false;
             }
-            if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
-                logic.setVisibleCells(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize);
+            if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsMarked())
+            {
+                if (map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsBomb())
+                    gameStatus = -1;
+                else if (!map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
+                    logic.setVisibleCells(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize);
+            }
         }
     }
 }
@@ -106,7 +107,7 @@ void GUI::execute(Logic & logic)
 	while (window.isOpen() && !gameStatus)
     {
         sf::Event event;
-        if (window.pollEvent(event))
+        while (window.pollEvent(event))
             check_event(event, logic);
 
         window.clear();
@@ -118,8 +119,10 @@ void GUI::execute(Logic & logic)
         timer.setString("Time: " + std::to_string(static_cast<int>((std::clock() - start )/CLOCKS_PER_SEC)));
         window.draw(timer);
 
-        //draw Game status
-        gameStatus = logic.check_state();
+        // draw Game status
+        if (logic.check_win())
+            gameStatus = 1;
+
         if (gameStatus == 1)
             state.setString("YOU WIN :D");
         else if (gameStatus == -1)
