@@ -10,11 +10,11 @@ OBJ_FILES 	=	$(SRC_FILES:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	@$(CC) $(FLAGS) -o $@ $(OBJ_FILES) $(LIB_FLAG) -lsfml-graphics -lsfml-window -lsfml-system
+	@$(CC) $(FLAGS) -o $@ $(OBJ_FILES) $(LIB_FLAG)
 	@echo "\033[32m[ ✔ ] "Logic library is ready." \033[0m"
 
 %.o:%.cpp
-	@$(CC) $(FLAGS) -c -o $@ $< -I $(INC_DIR) -I $(SFML_INC)
+	@$(CC) $(FLAGS) -c -o $@ $<
 
 clean:
 	@rm -rf $(OBJ_FILES)

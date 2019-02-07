@@ -30,7 +30,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.cpp
-	@$(CC) -c $< -o $@ $(FLAGS) -std=c++11
+	@$(CC) -c $< -o $@ $(FLAGS)
 
 clean:
 	@make -sC Logic clean
