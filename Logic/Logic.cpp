@@ -1,7 +1,7 @@
 #include "Logic.hpp"
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
+
 Logic::Logic(int size) : size(size), bombSize(size * 1.5)
 {
 	srand(unsigned(std::time(0)));
@@ -125,7 +125,7 @@ bool Logic::setPossibleCells(int x, int y)
 				if (map[i][j].getIsBomb() && !map[i][j].getIsMarked())
 					result = false;
 				if (!map[i][j].getBombsNear())
-					setVisibleCells(i,j); //should be possible
+					setVisibleCells(i,j);
 				if (!map[i][j].getIsMarked())
 					map[i][j].setIsVisible(true);
 			}

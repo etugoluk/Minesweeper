@@ -1,5 +1,4 @@
 #include "GUI.hpp"
-#include <iostream>
 
 GUI::GUI(int mapSize)
 {
