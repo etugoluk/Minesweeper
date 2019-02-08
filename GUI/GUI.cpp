@@ -115,6 +115,8 @@ void GUI::refresh(Logic & logic)
     gameStatus = 0;
     isFirstClick = 1;
     logic.clearMap();
+    window.close();
+    window.create(sf::VideoMode(windowSize, windowSize + 50), "Minesweeper", sf::Style::Close);
 }
 
 int GUI::execute(Logic & logic)
