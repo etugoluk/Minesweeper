@@ -100,7 +100,7 @@ void GUI::check_event(sf::Event const & event, Logic & logic)
         else if (event.mouseButton.button == sf::Mouse::Middle && 
             map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getIsVisible())
         {
-            if (map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getBombsNear() <=
+            if (map[event.mouseButton.y / cellSize][event.mouseButton.x / cellSize].getBombsNear() ==
                 logic.countFlags(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize))
             {
                 if (!logic.setPossibleCells(event.mouseButton.y / cellSize, event.mouseButton.x / cellSize))
